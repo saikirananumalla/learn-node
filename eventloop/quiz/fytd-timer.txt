@@ -1,1 +1,11 @@
 - In eventloop/timer.js, what will be the order of execution? Briefly explain the order of execution w.r.t the event loop phases.
+-foo
+ baz
+ foo
+ baz
+ 2 : bar
+ 1 : bar
+- the async call will be stalled and other calls are completed first, then after both foo and baz
+complete these 'bar' are executed
+- since timeout is 0 the timeouts are moved from timers to pending callbacks immediately, after the
+sync calls complete then these pending callbacks state are executed
